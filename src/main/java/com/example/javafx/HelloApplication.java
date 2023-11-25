@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("App.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
-        stage.setTitle("N7gramm!");
+        stage.setTitle("N7gramme!");
         stage.setScene(scene);
         stage.show();
         //mongoDBConnector.close();

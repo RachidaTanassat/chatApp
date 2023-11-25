@@ -48,6 +48,8 @@ public class HelloController implements Initializable {
             InputStream inputStream = socket.getInputStream();
             InputStreamReader isr = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(isr);
+
+
             pw = new PrintWriter(socket.getOutputStream(), true);
             new Thread( ()->{
                 try {
