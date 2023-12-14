@@ -45,10 +45,10 @@ public class serveur extends Thread {
 
                 try {
                     for (Conversation client : clients) {
-                       // if(socket!=client.socketClient) {
+
                             PrintWriter printWriter = new PrintWriter(client.socketClient.getOutputStream(), true);
                             printWriter.println(message);
-                       // }
+
                     }
                  } catch (IOException e) {
                     throw new RuntimeException(e);

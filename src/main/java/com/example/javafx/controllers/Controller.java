@@ -1,4 +1,8 @@
-package com.example.javafx;
+package com.example.javafx.controllers;
+import com.example.javafx.dao.MessageDaoImpl;
+import com.example.javafx.dao.entities.Message;
+import com.example.javafx.service.IMessageService;
+import com.example.javafx.service.IServiceMessageImpl;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -16,11 +20,13 @@ import javafx.scene.shape.Circle;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class HelloController implements Initializable {
+public class Controller implements Initializable {
+    IMessageService service = new IServiceMessageImpl(new MessageDaoImpl());
     PrintWriter pw;
     @FXML
     private Circle circle;
@@ -69,7 +75,7 @@ public class HelloController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        getMessages();
     }
 
 
@@ -84,5 +90,19 @@ public class HelloController implements Initializable {
         String message = textfield.getText();
         pw.println(message);
         textfield.clear();
+
+        /*Message msg=new Message();
+        msg.setContent(message);
+        msg.setSender("rachida");
+        msg.setReceiver("Aafaf");
+
+        service.addMessage(msg);*/
+    }
+
+    public void getMessages(){
+        List<Message> messages = service.getAllMessages();
+        for(Message msg:messages){
+            listModal.add(msg.getContent());
+        }
     }
 }
