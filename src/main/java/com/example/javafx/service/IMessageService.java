@@ -11,6 +11,8 @@ public interface IMessageService {
     public List<Message> getAllMessages();
     public void updateMessage(Message message);
     public List<Message> searchMessageByQuery(String query);
+    List<Message> getMessageByUserId(String idReceiver, String idSender);
+
 
 
 }

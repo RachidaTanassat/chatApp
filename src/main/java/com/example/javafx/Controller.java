@@ -78,7 +78,6 @@ public class Controller implements Initializable {
                         String response = bufferedReader.readLine();
                         Platform.runLater(() -> {
                             listModal.add(response);
-                            listView.getItems().setAll(listModal);
                         });
 
                     }
@@ -90,7 +89,6 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        getMessages();
     }
 
 
@@ -188,8 +186,8 @@ public class Controller implements Initializable {
         service.addMessage(msg);*/
     }
 
-    public void getMessages(){
-        List<Message> messages = service.getAllMessages();
+    public void getMessages(String idReciever, String idSender){
+        List<Message> messages = service.getMessageByUserId(idReciever, idSender);
         for(Message msg:messages){
             listModal.add(msg.getContent());
         }
@@ -221,22 +219,28 @@ public class Controller implements Initializable {
         System.out.println("Exiting initData");
     }
 
-    private HBox createHBox(User user) {
+    private HBox createHBox(User userHbox) {
         Circle circle = new Circle(23.0, Color.WHITE);
         circle.setStroke(Color.BLACK);
 
-        fillCircle(user, circle);
+        fillCircle(userHbox, circle);
 
 
-        Label nameLabel = new Label(user.getNom());
-        Label emailLabel = new Label(user.getEmail());
+        Label nameLabel = new Label(userHbox.getNom());
+        Label emailLabel = new Label(userHbox.getEmail());
 
         VBox innerVBox = new VBox(nameLabel, emailLabel);
         innerVBox.setSpacing(5.0); // Adjust the spacing according to your preference
 
         HBox hbox = new HBox(circle, innerVBox);
+        hbox.setOnMouseClicked( e -> {
+            getMessages(user.getUser_id(), userHbox.getUser_id());
+            listView.getItems().setAll(listModal);
+
+        });
         hbox.setSpacing(10.0); // Adjust the spacing according to your preference
         hbox.getStyleClass().add("label_style");
+
 
         return hbox;
     }

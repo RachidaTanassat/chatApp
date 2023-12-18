@@ -37,9 +37,13 @@ public class IServiceMessageImpl implements IMessageService{
 
     @Override
     public List<Message> searchMessageByQuery(String query) {
-        return messageDao.searchProductByQuery(query);
+        return messageDao.searchMessageByQuery(query);
     }
 
+    @Override
+    public List<Message> getMessageByUserId(String idReceiver, String idSender) {
+        return messageDao.getMessageByUserId(idReceiver, idSender);
+    }
 
 
 }

@@ -50,13 +50,16 @@ public class App {
 
         }*/
 
-        List<User> users = userService.searchUserByQuery("rachida");
+       /* List<User> users = userService.searchUserByQuery("rachida");
 
         for (User user:
              users) {
             System.out.println(user.getNom());
 
-        }
+        }*/
+
+        List<Message> messages = service.getMessageByUserId("af4e854e-739b-4e5f-babe-eabab8e9318d","83c2f609-58c9-4716-a234-32a16da242e3");
+        System.out.println(messages);
     }
 
 }

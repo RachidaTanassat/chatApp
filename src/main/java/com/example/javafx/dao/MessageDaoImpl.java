@@ -94,7 +94,38 @@ public class MessageDaoImpl implements MessageDao{
     }
 
     @Override
-    public List<Message> searchProductByQuery(String query) {
+    public List<Message> searchMessageByQuery(String query) {
         return null;
     }
-}
+
+    @Override
+    public List<Message> getMessageByUserId(String idReceiver, String idSender) {
+
+            List<Message> messages = new ArrayList<>();
+
+            try (MongoCursor<Document> cursor = collection.find(Filters.and(
+                    Filters.eq("receiver", idReceiver),
+                    Filters.eq("sender", idSender)
+            )).iterator()) {
+                while (cursor.hasNext()) {
+                    Document doc = cursor.next();
+                    Message message = new Message();
+                    message.setMessage_id(doc.getString("message_id"));
+                    message.setContent(doc.getString("content"));
+                    message.setSender(doc.getString("sender"));
+                    message.setReceiver(doc.getString("reciever"));
+                    message.setRead(doc.getBoolean("isRead"));
+                    message.setDate(doc.getDate("date"));
+
+                    messages.add(message);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return messages;
+        }
+
+
+
+    }

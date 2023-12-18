@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface MessageDao extends Dao<Message, String>{
 
-    List<Message> searchProductByQuery(String query);
+    List<Message> searchMessageByQuery(String query);
+    List<Message> getMessageByUserId(String idReceiver, String idSender);
+
+
 }
