@@ -1,6 +1,5 @@
 package com.example.javafx.service;
 
-import com.example.javafx.dao.entities.Message;
 import com.example.javafx.dao.entities.User;
 
 import java.util.List;
@@ -15,8 +14,9 @@ public interface IUserService {
     public void updateUser(User user);
     public List<User> searchUserByQuery(String query);
     public User login(String email, String password);
-    public Boolean emailExists(String email);
+    public String emailExists(String email);
     void updateImage(String userId, byte[] newImageData);
 
 
+    void addContact(String userId, String contactId);
 }

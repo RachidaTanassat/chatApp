@@ -65,7 +65,7 @@ private Label image;
     void signUp(ActionEvent event) {
         String userEmail = email.getText();
 
-        if (userService.emailExists(userEmail)) {
+        if (userService.emailExists(userEmail) != null) {
 
             showAlert("Error", "Email already exists. Please use a different email.", AlertType.ERROR);
 

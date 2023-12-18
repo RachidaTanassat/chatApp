@@ -40,7 +40,7 @@ public class IserviceUserImpl implements IUserService{
 
     @Override
     public List<User> searchUserByQuery(String query) {
-        return userDao.searchProductByQuery(query);
+        return userDao.searchUsersByQuery(query);
     }
 
     @Override
@@ -49,13 +49,18 @@ public class IserviceUserImpl implements IUserService{
     }
 
     @Override
-    public Boolean emailExists(String email) {
+    public String emailExists(String email) {
         return userDao.emailExists(email);
     }
 
     @Override
     public void updateImage(String userId, byte[] newImageData) {
         userDao.updateImage(userId, newImageData);
+    }
+
+    @Override
+    public void addContact(String userId, String contactId) {
+        userDao.addContact( userId,  contactId);
     }
 
 

@@ -36,7 +36,7 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </FontAwesomeIcon>
-                  <TextField prefHeight="34.0" prefWidth="83.0" promptText="Search" styleClass="background_transparent" stylesheets="@../style/style.css" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="search" prefHeight="34.0" prefWidth="83.0" promptText="Search" styleClass="background_transparent" stylesheets="@../style/style.css" HBox.hgrow="ALWAYS" />
                </children>
                <HBox.margin>
                   <Insets bottom="20.0" top="20.0" />
@@ -46,7 +46,7 @@
                   <String fx:value="radius" />
                </styleClass>
             </HBox>
-            <Circle fx:id="circle" fill="WHITE" onMouseClicked="#changeImage" radius="30.0" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS" />
+            <Circle fx:id="imageUser" fill="WHITE" onMouseClicked="#DroppedList" radius="30.0" stroke="BLACK" strokeType="INSIDE" HBox.hgrow="ALWAYS" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -67,7 +67,7 @@
          <children>
             <HBox prefHeight="55.0" prefWidth="273.0">
                <children>
-                  <AnchorPane prefHeight="55.0" prefWidth="280.0" styleClass="background_second" stylesheets="@../style/style.css" HBox.hgrow="ALWAYS">
+                  <AnchorPane prefHeight="55.0" prefWidth="279.0" styleClass="background_second" stylesheets="@../style/style.css" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton ellipsisString="Chats" layoutX="4.0" layoutY="11.0" prefHeight="30.0" prefWidth="65.0" styleClass="background_transparent" stylesheets="@../style/style.css" text="Chats" textFill="WHITE">
                            <font>

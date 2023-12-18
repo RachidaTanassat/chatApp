@@ -1,26 +1,22 @@
 package com.example.javafx.dao;
 
-import com.example.javafx.dao.entities.Message;
 import com.example.javafx.dao.entities.User;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.gridfs.GridFSBucket;
-import com.mongodb.client.gridfs.GridFSBuckets;
-import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -74,6 +70,8 @@ public class UserDaoImpl implements UserDao{
             user.setNom(doc.getString("nom"));
             user.setPassword(doc.getString("password"));
             user.setEmail(doc.getString("email"));
+            byte[] imageData = doc.get("image", Binary.class).getData();
+            user.setImageData(imageData);
             List<String> contactsList = doc.getList("contact", String.class);
             if (contactsList != null) {
                 user.setContacts(contactsList.toArray(new String[0]));
@@ -95,6 +93,8 @@ public class UserDaoImpl implements UserDao{
                 user.setNom(contenu.getString("nom"));
                 user.setPassword(contenu.getString("password"));
                 user.setEmail(contenu.getString("email"));
+                byte[] imageData = contenu.get("image", Binary.class).getData();
+                user.setImageData(imageData);
                 List<String> contactsList = contenu.getList("contact", String.class);
                 if (contactsList != null) {
                     user.setContacts(contactsList.toArray(new String[0]));
@@ -114,7 +114,6 @@ public class UserDaoImpl implements UserDao{
                 Updates.set("nom", o.getNom()),
                 Updates.set("password", o.getPassword()),
                 Updates.set("email", o.getEmail()),
-                Updates.set("image", o.getImage()),
                 Updates.set("contact", Arrays.asList(o.getContacts())));
 
 
@@ -123,11 +122,16 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public List<User> searchProductByQuery(String query) {
+    public List<User> searchUsersByQuery(String query) {
         List<User> users = new ArrayList<>();
 
         try {
-            org.bson.conversions.Bson filter = Filters.text(query);
+            Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
+            Bson filter = Filters.or(
+                    Filters.regex("user_id", pattern),
+                    Filters.regex("nom", pattern),
+                    Filters.regex("password", pattern),
+                    Filters.regex("email", pattern));
 
             try (MongoCursor<Document> cursor = collection.find(filter).iterator()) {
                 while (cursor.hasNext()) {
@@ -137,24 +141,20 @@ public class UserDaoImpl implements UserDao{
                     user.setNom(contenu.getString("nom"));
                     user.setPassword(contenu.getString("password"));
                     user.setEmail(contenu.getString("email"));
-                    List<String> contactsList = contenu.getList("contact", String.class);
+                    List<String> contactsList = contenu.getList("contacts", String.class);
                     if (contactsList != null) {
                         user.setContacts(contactsList.toArray(new String[0]));
                     }
-
 
                     users.add(user);
                 }
             }
         } catch (Exception e) {
+            // Handle specific exceptions or log them based on your application needs
             e.printStackTrace();
         }
 
         return users;
-
-
-
-
     }
 
     @Override
@@ -190,11 +190,11 @@ public class UserDaoImpl implements UserDao{
 
 
     @Override
-    public Boolean emailExists(String email) {
+    public String emailExists(String email) {
 
         Document doc = collection.find(Filters.eq("email", email)).first();
-        if(doc != null) return true;
-        else return false;
+        if(doc != null) return doc.getString("user_id");
+        else return null;
     }
 
     @Override
@@ -203,6 +203,30 @@ public class UserDaoImpl implements UserDao{
         Bson update = Updates.set("image", new Binary(newImageData));
         collection.updateOne(filter, update);
     }
+
+    @Override
+    public void addContact(String userId, String contactId) {
+        try {
+
+            Document userDoc = collection.find(Filters.eq("user_id", userId)).first();
+
+            if (userDoc != null) {
+                List<String> contacts = userDoc.getList("contact", String.class, new ArrayList<>());
+                contacts.add(contactId);
+                collection.updateOne(
+                        Filters.eq("user_id", userId),
+                        Updates.set("contact", contacts),
+                        new UpdateOptions().upsert(true)
+                );
+                System.out.println("Contact added successfully.");
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

@@ -25,7 +25,7 @@ public class App {
         /*List<Message> messages = service.getAllMessages();
         for(Message msg:messages){
             System.out.println(msg.getContent());
-        }*/
+        }
         User user=new User();
         user.setNom("hi ");
         user.setPassword("0000");
@@ -48,6 +48,15 @@ public class App {
                 }
             }
 
+        }*/
+
+        List<User> users = userService.searchUserByQuery("rachida");
+
+        for (User user:
+             users) {
+            System.out.println(user.getNom());
+
         }
     }
+
 }
