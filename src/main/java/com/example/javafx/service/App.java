@@ -5,6 +5,8 @@ import com.example.javafx.dao.UserDaoImpl;
 import com.example.javafx.dao.entities.Message;
 import com.example.javafx.dao.entities.User;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class App {
@@ -23,15 +25,29 @@ public class App {
         /*List<Message> messages = service.getAllMessages();
         for(Message msg:messages){
             System.out.println(msg.getContent());
-        }
+        }*/
         User user=new User();
-        user.setNom("Hello ");
+        user.setNom("hi ");
         user.setPassword("0000");
-        user.setEmail("hello@gmail.com");
+        user.setEmail("tanassat@gmail.com");
+        user.setContacts(new String[]{"f68c750c-687b-4c3a-98d9-5fd8a681eaa5", "f68c750c-687b-4c3a-98d9-5fd8a681eaa5"});
 
-        userService.addUser(user);*/
+        userService.addUser(user);
 
-        User user1 = userService.login("rachida@gmail.com", "1234");
-        System.out.println(user1);
+        User user1 = userService.login("rachida@gmail.com", "123");
+        System.out.println(user1.getNom());
+        User user2 = userService.getUserById("f68c750c-687b-4c3a-98d9-5fd8a681eaa5");
+        String contact_ids[] = user2.getContacts();
+        if (contact_ids != null) {
+            for (String id : contact_ids) {
+                User contact = userService.getUserById(id);
+                if (contact != null) {
+                    System.out.println(contact.getNom());
+                } else {
+                    System.out.println("User with ID " + id + " not found.");
+                }
+            }
+
+        }
     }
 }

@@ -11,8 +11,8 @@ public class DBConnection {
 
     static {
 
-            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
-           database = mongoClient.getDatabase("java_project");
+        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+        database = mongoClient.getDatabase("java_project");
 
     }
 

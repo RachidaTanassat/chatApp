@@ -9,9 +9,14 @@ public interface IUserService {
 
     public void addUser(User user);
     public void deleteUserById(String id);
+    public User getUserById(String id );
+
     public List<User> getAllUsers();
     public void updateUser(User user);
     public List<User> searchUserByQuery(String query);
     public User login(String email, String password);
     public Boolean emailExists(String email);
+    void updateImage(String userId, byte[] newImageData);
+
+
 }

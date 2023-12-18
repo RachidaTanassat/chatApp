@@ -8,6 +8,33 @@ public class User implements Serializable {
     private String nom;
     private String password;
     private String email;
+    private String[] contacts;
+    private String image;
+    private byte[] imageData;
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String[] getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String[] contacts) {
+        this.contacts = contacts;
+    }
 
     public User() {
     }

@@ -1,4 +1,4 @@
-package com.example.javafx.controllers;
+package com.example.javafx;
 
 import com.example.javafx.dao.UserDaoImpl;
 import com.example.javafx.dao.entities.User;
@@ -8,8 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,13 +33,35 @@ public class SignupController implements Initializable {
 
     @FXML
     private TextField userName;
-
+@FXML
+private Label image;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-@FXML
+
+    @FXML
+    void addImage(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif", "*.jpeg"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                image.setText(String.valueOf(selectedFile));
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors du chargement de l'image.", ButtonType.OK);
+                alert.showAndWait();
+            }
+        }
+    }
+
+    @FXML
     void signUp(ActionEvent event) {
         String userEmail = email.getText();
 
@@ -45,8 +74,10 @@ public class SignupController implements Initializable {
             user.setNom(userName.getText());
             user.setEmail(userEmail);
             user.setPassword(password.getText());
-
+            user.setImage(image.getText());
             userService.addUser(user);
+
+            showAlert("Succes", "Your account has been added with successful", AlertType.INFORMATION);
 
         }
     }

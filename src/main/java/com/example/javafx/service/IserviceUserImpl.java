@@ -24,6 +24,11 @@ public class IserviceUserImpl implements IUserService{
     }
 
     @Override
+    public User getUserById(String id) {
+        return userDao.getById(id);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userDao.getAll();
     }
@@ -47,4 +52,11 @@ public class IserviceUserImpl implements IUserService{
     public Boolean emailExists(String email) {
         return userDao.emailExists(email);
     }
+
+    @Override
+    public void updateImage(String userId, byte[] newImageData) {
+        userDao.updateImage(userId, newImageData);
+    }
+
+
 }

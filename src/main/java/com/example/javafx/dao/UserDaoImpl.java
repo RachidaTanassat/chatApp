@@ -4,16 +4,23 @@ import com.example.javafx.dao.entities.Message;
 import com.example.javafx.dao.entities.User;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.gridfs.GridFSBucket;
+import com.mongodb.client.gridfs.GridFSBuckets;
+import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -21,21 +28,31 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class UserDaoImpl implements UserDao{
 
+    DBConnection database = new DBConnection();
     MongoCollection<Document> collection = DBConnection.getDatabase().getCollection("users");
 
     @Override
     public void save(User o) {
         UUID id = UUID.randomUUID();
         String userId = id.toString();
-        String hashedPassword = BCrypt.hashpw(o.getPassword(), BCrypt.gensalt());
+       String hashedPassword = BCrypt.hashpw(o.getPassword(), BCrypt.gensalt());
+        byte[] imageBytes;
+        try {
+            Path path = Paths.get(o.getImage());
+            imageBytes = Files.readAllBytes(path);
+        } catch (IOException | RuntimeException e) {
+            e.printStackTrace();
+            return;
+        }
 
+        Binary imageBinary = new Binary(imageBytes);
 
         Document user = new Document("_id", new ObjectId())
                 .append("user_id", userId)
                 .append("nom", o.getNom())
                 .append("password", hashedPassword)
-                .append("email", o.getEmail());
-
+                .append("email", o.getEmail())
+                .append("image", imageBinary);
 
         collection.insertOne(user);
     }
@@ -57,7 +74,10 @@ public class UserDaoImpl implements UserDao{
             user.setNom(doc.getString("nom"));
             user.setPassword(doc.getString("password"));
             user.setEmail(doc.getString("email"));
-
+            List<String> contactsList = doc.getList("contact", String.class);
+            if (contactsList != null) {
+                user.setContacts(contactsList.toArray(new String[0]));
+            }
         }
 
         return user;
@@ -75,6 +95,10 @@ public class UserDaoImpl implements UserDao{
                 user.setNom(contenu.getString("nom"));
                 user.setPassword(contenu.getString("password"));
                 user.setEmail(contenu.getString("email"));
+                List<String> contactsList = contenu.getList("contact", String.class);
+                if (contactsList != null) {
+                    user.setContacts(contactsList.toArray(new String[0]));
+                }
 
 
                 users.add(user);
@@ -89,7 +113,10 @@ public class UserDaoImpl implements UserDao{
         Bson updates  = Updates.combine(
                 Updates.set("nom", o.getNom()),
                 Updates.set("password", o.getPassword()),
-                Updates.set("email", o.getEmail()));
+                Updates.set("email", o.getEmail()),
+                Updates.set("image", o.getImage()),
+                Updates.set("contact", Arrays.asList(o.getContacts())));
+
 
         collection.updateOne(query, updates);
 
@@ -97,37 +124,85 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public List<User> searchProductByQuery(String query) {
-        return null;
+        List<User> users = new ArrayList<>();
+
+        try {
+            org.bson.conversions.Bson filter = Filters.text(query);
+
+            try (MongoCursor<Document> cursor = collection.find(filter).iterator()) {
+                while (cursor.hasNext()) {
+                    Document contenu = cursor.next();
+                    User user = new User();
+                    user.setUser_id(contenu.getString("user_id"));
+                    user.setNom(contenu.getString("nom"));
+                    user.setPassword(contenu.getString("password"));
+                    user.setEmail(contenu.getString("email"));
+                    List<String> contactsList = contenu.getList("contact", String.class);
+                    if (contactsList != null) {
+                        user.setContacts(contactsList.toArray(new String[0]));
+                    }
+
+
+                    users.add(user);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return users;
+
+
+
+
     }
 
     @Override
-    public User login(String email, String password) {
+     public User login(String email, String password) {
         User user = null;
+        Document doc = collection.find(Filters.eq("email", email)).first();
 
-        Document doc = collection.find(Filters.and(
-                Filters.eq("email", email),
-                Filters.eq("password", password)
-        )).first();
-        if(doc != null){
-            user = new User();
-            user.setUser_id(doc.getString("user_id"));
-            user.setNom(doc.getString("nom"));
-            user.setPassword(doc.getString("password"));
-            user.setEmail(doc.getString("email"));
+        if (doc != null) {
+            // Get the hashed password from the document
+            String hashedPassword = doc.getString("password");
 
+            // Verify the entered password against the hashed password
+            if (BCrypt.checkpw(password, hashedPassword)) {
+                user = new User();
+                user.setUser_id(doc.getString("user_id"));
+                user.setNom(doc.getString("nom"));
+                user.setPassword(doc.getString("password"));
+                user.setEmail(doc.getString("email"));
+
+                byte[] imageData = doc.get("image", Binary.class).getData();
+                user.setImageData(imageData);
+
+                List<String> contactsList = doc.getList("contact", String.class);
+                if (contactsList != null) {
+                    user.setContacts(contactsList.toArray(new String[0]));
+                }
+            }
         }
 
         return user;
     }
 
+
+
     @Override
     public Boolean emailExists(String email) {
-
 
         Document doc = collection.find(Filters.eq("email", email)).first();
         if(doc != null) return true;
         else return false;
-
-
     }
+
+    @Override
+    public void updateImage(String userId, byte[] newImageData) {
+        Bson filter = Filters.eq("user_id", userId);
+        Bson update = Updates.set("image", new Binary(newImageData));
+        collection.updateOne(filter, update);
+    }
+
+
 }

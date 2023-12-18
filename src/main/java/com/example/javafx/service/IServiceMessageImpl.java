@@ -2,7 +2,9 @@ package com.example.javafx.service;
 
 import com.example.javafx.dao.MessageDao;
 import com.example.javafx.dao.entities.Message;
+import com.example.javafx.dao.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IServiceMessageImpl implements IMessageService{
@@ -37,4 +39,7 @@ public class IServiceMessageImpl implements IMessageService{
     public List<Message> searchMessageByQuery(String query) {
         return messageDao.searchProductByQuery(query);
     }
+
+
+
 }
