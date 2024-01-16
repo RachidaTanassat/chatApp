@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b7f846f2-7a8c-4383-aa17-5109ef952c9f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/AudioRecorder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/MessageListCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/kafka/KafkaAudio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/kafka/KafkaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/kafka/KafkaFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafx/aff.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafx/profil.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/addContactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/javafx/addContactController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/javafx/serveur.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javafx/App.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafx/App.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/javafx/addContact.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/javafx/addContact.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2YBG2vjYe3YH7JVFwI63XwOyaTh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;serveur&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/hp/Desktop/ENSET_S3/java/javafx/src/main/java/com/example/javafx&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hp/Desktop/ENSET_S3/java/compte_rendu/Products&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.29770115&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.javafx" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\ENSET_S3\java\javafx\src\main\java\com\example\javafx" />
+      <recent name="C:\Users\hp\Desktop\ENSET_S3\java\javafx" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\ENSET_S3\java\javafx\src\main\resources\com\example\img" />
+      <recent name="C:\Users\hp\Desktop\ENSET_S3\java\javafx\src\main\resources\com\example\javafx" />
+      <recent name="C:\Users\hp\Desktop\ENSET_S3\java\javafx\src\main\resources\com\example" />
+      <recent name="C:\Users\hp\Desktop\ENSET_S3\java\javafx\src\main\resources\com\example\javafx\img" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.javafx" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.javafx" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.javafx.service.App" />
+      <module name="javafx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.javafx.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.javafx.controllers.Application" />
+      <module name="javafx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.javafx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AudioRecorder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.javafx.AudioRecorder" />
+      <module name="javafx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.javafx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.example.javafx.Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.javafx.Application" />
+      <module name="javafx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.javafx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="serveur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.javafx.serveur" />
+      <module name="javafx" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.javafx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.com.example.javafx.Application" />
+        <item itemvalue="Application.Application" />
+        <item itemvalue="Application.AudioRecorder" />
+        <item itemvalue="Application.serveur" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b7f846f2-7a8c-4383-aa17-5109ef952c9f" name="Changes" comment="" />
+      <created>1699991357980</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699991357980</updated>
+      <workItem from="1699991358956" duration="10014000" />
+      <workItem from="1700055826257" duration="4862000" />
+      <workItem from="1700072724069" duration="11726000" />
+      <workItem from="1700249035899" duration="6741000" />
+      <workItem from="1700264635563" duration="12799000" />
+      <workItem from="1700318576342" duration="13015000" />
+      <workItem from="1700466319297" duration="173000" />
+      <workItem from="1700467807232" duration="2485000" />
+      <workItem from="1700486082698" duration="104000" />
+      <workItem from="1700486740170" duration="1292000" />
+      <workItem from="1700668777217" duration="662000" />
+      <workItem from="1700834315271" duration="28098000" />
+      <workItem from="1701515801809" duration="14055000" />
+      <workItem from="1701978373669" duration="782000" />
+      <workItem from="1702119934874" duration="969000" />
+      <workItem from="1702290604336" duration="300000" />
+      <workItem from="1702336802277" duration="538000" />
+      <workItem from="1702391002642" duration="675000" />
+      <workItem from="1702559503230" duration="20199000" />
+      <workItem from="1702633355598" duration="1188000" />
+      <workItem from="1702641723848" duration="11753000" />
+      <workItem from="1702760334886" duration="19000" />
+      <workItem from="1702809172349" duration="460000" />
+      <workItem from="1702809647759" duration="14619000" />
+      <workItem from="1702897839408" duration="6972000" />
+      <workItem from="1702906289471" duration="26739000" />
+      <workItem from="1702979555002" duration="186000" />
+      <workItem from="1703187895321" duration="44000" />
+      <workItem from="1703192263012" duration="944000" />
+      <workItem from="1703495019669" duration="8652000" />
+      <workItem from="1703795060006" duration="3296000" />
+      <workItem from="1703806484160" duration="1619000" />
+      <workItem from="1703849866550" duration="4498000" />
+      <workItem from="1703955826433" duration="15693000" />
+      <workItem from="1703978556461" duration="40499000" />
+      <workItem from="1704540268123" duration="22069000" />
+      <workItem from="1704588706231" duration="11446000" />
+      <workItem from="1704658699503" duration="42000" />
+      <workItem from="1704824131579" duration="15659000" />
+      <workItem from="1704980994371" duration="36058000" />
+      <workItem from="1705054755352" duration="16265000" />
+      <workItem from="1705408930767" duration="742000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

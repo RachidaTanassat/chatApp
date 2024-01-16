@@ -6,7 +6,10 @@ import com.example.javafx.service.IUserService;
 import com.example.javafx.service.IserviceUserImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -15,8 +18,10 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,8 +38,8 @@ public class SignupController implements Initializable {
 
     @FXML
     private TextField userName;
-@FXML
-private Label image;
+    @FXML
+    private Label image;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,8 +50,8 @@ private Label image;
     void addImage(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif", "*.jpeg"),
-                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*")
+                new FileChooser.ExtensionFilter("Images", ".png", ".jpg", ".gif", ".jpeg"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", ".")
         );
 
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -88,5 +93,26 @@ private Label image;
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+    @FXML
+    public void redirectToLogin(MouseEvent mouseEvent) {
+        try {
+            // Charger le fichier FXML de la page de connexion (login.fxml)
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignIn.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root,310,465);
+
+            // Obtenir la scène actuelle à partir de l'événement
+            Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

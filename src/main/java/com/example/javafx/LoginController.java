@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -35,38 +36,38 @@ public class LoginController implements Initializable {
     IUserService userService = new IserviceUserImpl(new UserDaoImpl());
 
     @FXML
-   private Circle circle;
- @FXML
- private TextField email;
- @FXML
- private TextField password;
+    private Circle circle;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField password;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image img = new Image(Objects.requireNonNull(getClass().getResource("/com/example/img/user1.png")).toExternalForm());
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
 
     }
 
-@FXML
-void login(ActionEvent event) throws IOException{
-    User user = userService.login(email.getText(), password.getText());
+    @FXML
+    void login(ActionEvent event) throws IOException{
+        User user = userService.login(email.getText(), password.getText());
 
-    if (user != null) {
-        showAlert("Login Successful", "Welcome, " + user.getNom(), AlertType.CONFIRMATION);
+        if (user != null) {
+            showAlert("Login Successful", "Welcome, " + user.getNom(), AlertType.CONFIRMATION);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("App.fxml"));
-        Parent homePageParent = loader.load();
-        Controller controller = loader.getController();
-        controller.initData(user);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("App.fxml"));
+            Parent homePageParent = loader.load();
+            Controller controller = loader.getController();
+            controller.initData(user);
 
-        Scene homePageScene = new Scene(homePageParent);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(homePageScene);
-        appStage.show();
-    } else {
-        showAlert("Login Failed", "Incorrect email or password", AlertType.ERROR);
+            Scene homePageScene = new Scene(homePageParent);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homePageScene);
+            appStage.show();
+        } else {
+            showAlert("Login Failed", "Incorrect email or password", AlertType.ERROR);
+        }
     }
-}
 
     private void showAlert(String title, String content, AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -76,6 +77,25 @@ void login(ActionEvent event) throws IOException{
         alert.showAndWait();
     }
 
+    @FXML
+    public void redirectToRegister(MouseEvent mouseEvent) {
+        try {
+            // Charger le fichier FXML de la page de connexion (login.fxml)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+            Parent root = loader.load();
 
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir de l'événement
+            Stage stage = (Stage) ((javafx.scene.Node) mouseEvent.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

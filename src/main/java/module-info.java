@@ -5,7 +5,9 @@ module com.example.javafx {
     requires mongo.java.driver;
     requires jbcrypt;
     requires opentok.server.sdk;
-
+    requires kafka.clients;
+    requires java.desktop;
+    requires javafx.media;
 
     opens com.example.javafx to javafx.fxml;
     exports com.example.javafx;

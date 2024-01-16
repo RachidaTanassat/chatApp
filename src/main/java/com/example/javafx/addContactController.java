@@ -6,11 +6,14 @@ import com.example.javafx.service.IUserService;
 import com.example.javafx.service.IserviceUserImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class addContactController {
+
+    public String idContact;
     @FXML
     private TextField email;
 
@@ -32,8 +35,10 @@ public class addContactController {
                 userService.addContact(user.getUser_id(), id);
 
 
-                showAlert("Succès", "Le contact a été ajouté avec succès.", Alert.AlertType.INFORMATION);
+                idContact= id;
 
+
+                showAlert("Succès", "Le contact a été ajouté avec succès.", Alert.AlertType.INFORMATION);
                 Stage stage = (Stage) email.getScene().getWindow();
                 stage.close();
             } else
